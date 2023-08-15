@@ -4,11 +4,17 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import { signIn, signOut, useSession, getProviders } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
 
 const Nav = () => {
     const { data: session } = useSession();
     const [providers, setProviders] = useState(null);
     const [toggleDropdown, setToggleDropdown] = useState(false)
+    const router = useRouter();
+
+    const signOutHandler = () => {
+        signOut({callbackUrl: `${window.location.origin}`});
+    }
 
     useEffect(() => {
         const setUpProviders = async () => {
@@ -38,7 +44,7 @@ const Nav = () => {
                         <Link href="/create-prompt" className="black_btn">
                             Create Prompt
                         </Link>
-                        <button type="button" className="outline_btn" onClick={signOut}>
+                        <button type="button" className="outline_btn" onClick={signOutHandler}>
                             Sign Out
                         </button>
 
@@ -101,7 +107,7 @@ const Nav = () => {
                                     type="button"
                                     onClick={() => {
                                         setToggleDropdown(false);
-                                        signOut();
+                                        signOutHandler;
                                     }}
                                     className="mt-5 w-full black_btn"
                                 >
