@@ -40,7 +40,7 @@ const MyProfile = () => {
             setPosts(data);
         }
         fetchProfile();
-    }, []);
+    }, [session.user.id]);
 
     return (
         <Profile

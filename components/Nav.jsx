@@ -27,7 +27,6 @@ const Nav = () => {
                     width={30}
                     height={30}
                     className="object-contain"
-                    alt="logo"
                 />
             </Link>
             <p className="logo_text">Promptomania</p>
